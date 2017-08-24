@@ -1,0 +1,12 @@
+<div *ngFor="let place of (selectedTrip$ | async).places">
+  <h3>
+    Checked into {{place.name}}
+  </h3>
+  <div *ngFor="let media of place.pictures">
+    <div class="">
+      <img class="ui centered medium image" [src]="media.url">
+      <p>{{media.description}}</p>
+    </div>
+  </div>
+  <div class="ui section divider"></div>
+</div>

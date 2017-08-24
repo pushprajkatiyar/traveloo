@@ -1,0 +1,70 @@
+<div class="header-trip">
+  <tr-trip-detail-header [trip]="trip$ | async"></tr-trip-detail-header>
+</div>
+
+<div class="ui centered grid">
+  <div class="sixteen wide tablet column ten wide computer column trip-activity">
+    <div *ngFor="let place of (trip$ | async)?.places">
+      <tr-place-detail [place]="place"></tr-place-detail>
+      <div class="ui divider">
+        <div class="star">✻</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sixteen wide tablet column right floated five wide computer column" style="text-align: center">
+    <div class="author">
+      <div class="avatar" [routerLink]="['/user', tripUser.id]">
+        <img [src]="tripUser.profile_pic?.url" alt="">
+      </div>
+      <div class="name">
+        {{tripUser.name}}
+      </div>
+      <div *ngIf="!(belongsToLoggedInUser() | async)"
+        class="follow-user" (click)="onToggleFollow()">
+        <button class="ui button">
+          {{tripFollowState() == "inactive" ? "Follow" : "Following"}}
+        </button>
+      </div>
+    </div>
+    <hr>
+    <div *ngIf="(trip$ | async)?.tag_list.length > 0" class="trip-tags">
+      <h3>Categories</h3>
+      <div class="tag-list">
+        <span *ngFor="let tag of (trip$ | async)?.tag_list" class="tag">
+          {{tag}}
+        </span>
+      </div>
+      <hr>
+    </div>
+    <div class="social-share">
+      <h3>Social Share</h3>
+      <share-buttons [url]="tripUrl"
+        [image]="(trip$ | async)?.thumbnail_image_url" 
+        [title]="(trip$ | async)?.name" 
+        [tags]="tripTags"
+        [description]="(trip$ | async)?.description"
+        [linkedIn]=false
+        [tumblr]=false
+        [google]=false
+        [pinterest]=false
+        [stumbleUpOn]=false
+        [reddit]=false
+        [whatsApp]=false>
+      </share-buttons>
+    </div>
+  </div>
+</div>
+
+
+<div class="ui grid">
+  <div class="card ten wide column comments-card">
+    <div *ngFor="let comment of comments$ | async" class="ui cards grid">
+      <tr-trip-comment [comment]="comment" [authUser]="loggedInUser$ | async" class="card fourteen wide right floated column"></tr-trip-comment>
+    </div>
+
+    <hr>
+    
+    <tr-new-trip-comment [authUser]="loggedInUser$ | async" [trip]="trip$ | async" class="ui cards grid"></tr-new-trip-comment>
+  </div>
+</div>

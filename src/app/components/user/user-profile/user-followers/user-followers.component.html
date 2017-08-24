@@ -1,0 +1,23 @@
+<div *ngFor="let follower of followersList$ | async">
+  <div class="ui grid follower-list">
+    <div class="two wide column">
+      <img class="ui avatar image" [src]="follower?.profile_pic.url">
+    </div>
+    <div class="ten wide column">
+      <div class="name">
+        {{follower?.name}}
+      </div>
+      <div class="content">
+        <span class="info">{{follower?.total_trips}} Trips</span>
+        <span class="info">{{follower?.total_followers}} Followers</span>
+        <span class="info">{{follower?.total_following}} Following</span>
+      </div>
+    </div>
+    <div class="four wide column follow-user">
+			<div *ngIf="(loggedUserId$ | async) != follower?.id" class="follow" (click)="onToggleFollow(follower?.id)">
+				<button class="ui facebook button">
+					{{ follower?.is_followed_by_current_user ? "Following" : "Follow"}}
+				</button>
+			</div>
+  </div>
+</div>

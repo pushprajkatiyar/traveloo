@@ -1,0 +1,38 @@
+<div class="trip ui centered grid cards">
+  <div style="height: 120px; background: gray; width: 100%">
+  </div>
+  <div class="six wide column trip-submit-error hide">A Trip must contain a name and atleast one place with name, date and description</div>
+  <div class="trip-form twelve wide column ui card">
+    <form class="ui form" [formGroup]="tripForm">
+      <div class="field name">
+        <textarea class="trip-title" autosize type="text" placeholder="Title" formControlName="name"></textarea>
+        <div *ngIf="tripForm.controls['name'].hasError('required') && tripForm.controls['name'].touched" class="alert">Trip must contain name</div>
+        <button class="ui big button save-button" (click)="onSubmit()" type="button">Publish</button>
+      </div>
+      <div class="field">
+        <textarea class="trip-description" autosize placeholder="Where is it about?" formControlName="description"></textarea>
+      </div>
+      <div class="field tag-input">
+        <tag-input [(ngModel)]="tags" modelAsStrings="true" [onlyFromAutocomplete]="true" [ngModelOptions]="{standalone: true}">
+          <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="autocompleteTags"></tag-input-dropdown>
+        </tag-input>
+      </div>
+    </form>
+  </div>
+
+  <div *ngFor="let place of tripForm.value.places; let i = index" class="place-form twelve wide right aligned column">
+    <div *ngIf="!place._destroy" class="place">
+      <div class="remove-icon-background"></div>
+      <i class="remove circle icon" (click)="removePlace(place, i)"></i>
+      <tr-add-place [place]="place" (newPlace)="updatePlace($event, i)"></tr-add-place>
+    </div>
+  </div>
+  <div class="twelve wide column">
+    <div class="ui grid">
+      <div class="two wide column add-place" (click)="addNewPlace()">
+        <i class="add circle icon"></i>
+      </div>
+    </div>
+  </div>
+
+</div>

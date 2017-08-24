@@ -1,0 +1,65 @@
+<div class="profile-cover">
+	<div class="image profile-cover-div">
+		<div class="profile-info" [@flyInDown]="'in'">
+			<div class="profile-image-div text-white">
+				<div class="profile-image-text" [ngClass]="{'logged-in-user': (loggedUserId$ | async) == userIndex}" (click)="onUpdateProfilePicture()" >
+					<img *ngIf="!profilePicSrc" class="ui centered image profile-image" [src]="(selectedProfileUser$ | async).profile_pic?.url">
+					<img *ngIf="profilePicSrc" class="ui centered image profile-image" [src]="profilePicSrc">
+					<div class="update-icon-text" *ngIf="(loggedUserId$ | async) == userIndex">
+						<i class="big photo icon"></i>
+					</div>
+				</div>
+				<h3 class="profile-name">{{(selectedProfileUser$ | async).name}}</h3>
+				<div class="social-links">
+					<a *ngIf="(selectedProfileUser$ | async).facebook_url" [href]="(selectedProfileUser$ | async).facebook_url" target="_blank">
+						<i class="facebook square icon"></i>
+					</a>
+					<a *ngIf="(selectedProfileUser$ | async).twitter_url" [href]="(selectedProfileUser$ | async).twitter_url" target="_blank">
+						<i class="twitter square icon"></i>
+					</a>
+					<a *ngIf="(selectedProfileUser$ | async).instagram_url" [href]="(selectedProfileUser$ | async).instagram_url" target="_blank">
+						<i class="instagram icon"></i>
+					</a>							
+					<a *ngIf="(selectedProfileUser$ | async).blog_url" [href]="(selectedProfileUser$ | async).blog_url" target="_blank">
+						<i class="rss square icon"></i>
+					</a>
+				</div>
+				<div class="personal-links">
+					<a *ngIf="(selectedProfileUser$ | async).website_url" [href]="(selectedProfileUser$ | async).website_url" target="_blank">
+						<button class="ui button">website</button>
+					</a>
+				</div>				
+				<h4 class="profile-bio"></h4>
+			</div>
+			<div *ngIf="(loggedUserId$ | async) != userIndex" class="follow" (click)="onToggleFollow()">
+				<button class="ui button">
+					{{userFollowState() == "inactive" ? "Follow" : "Following"}}
+				</button>
+			</div>
+			<div [hidden]="true">
+				<input type="file" id="selectMedia" name="file" accept="image/*" (change)="handleInputChange($event)">
+			</div>
+		</div>
+		<img *ngIf="!coverPhotoSrc" class="cover-image" [src]="(selectedProfileUser$ | async).cover_photo?.url">
+		<img *ngIf="coverPhotoSrc" class="cover-image" [src]="coverPhotoSrc">
+		<div class="cover-update-text" *ngIf="(loggedUserId$ | async) == userIndex" (click)="onUpdateCoverPhoto()">
+			<i class="big photo icon"></i>
+			<div class="cover-photo-update-text1">Update Cover</div>
+			<div class="cover-photo-update-text2">Photo</div>
+		</div>
+	</div>
+
+	<div class="ui grid centered profile-nav">
+		<span class="profile-nav-links" [routerLink]="['trips']" routerLinkActive="active">Trips</span>
+		<span class="profile-nav-links" [routerLink]="['followers']" routerLinkActive="active">Followers</span>
+		<span class="profile-nav-links" [routerLink]="['following']" routerLinkActive="active">Following</span>
+		<span class="profile-nav-links" [routerLink]="['media']" routerLinkActive="active">Media</span>
+	</div>
+</div>
+
+<div class="main ui grid">
+	<div class="four wide column"></div>
+	<div class="eight wide column">
+		<router-outlet></router-outlet>
+	</div>
+</div>

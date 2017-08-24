@@ -1,0 +1,76 @@
+.my-header {
+  transition: background-color 500ms ease-out;
+  background: transparent;
+  border-radius: 0;
+  @media only screen and (min-width: 767px) {
+    padding: 0 5rem;  
+	}
+  width: 100%;
+  border: none !important;
+  box-shadow: none !important;
+
+  a, a:hover {
+  	color: white;
+  }
+  .title {
+  	font-size: 1.5rem;
+  	font-weight: 100;
+  	float: left;
+    margin-left: 6px;
+  	.title1 {
+	  	color: grey + 100;
+	  	float: left;
+	  }
+
+	  .title2 {
+	  	color: grey + 100;
+	  	float: left;
+	  }
+  }
+
+  .search {
+    color: white;
+    .input {
+      background: transparent;
+      color: white;
+      .prompt {
+        background: transparent;
+        border: 1px solid green;
+        border-radius: 6px;
+        color: white;
+      }
+    }
+  }
+
+  .travel {
+    color: rgb(17, 225, 139);
+  }
+
+  .logo {
+    width: 2rem !important;
+    margin-right: 0.5rem !important;
+  }
+
+  .item::before {
+    background: none !important;
+  }
+
+}
+
+.page-scroll-header {
+  background-color: #fafafa !important;
+  // opacity: 0.98;
+  color: black + 50 !important;
+  border-bottom: 1px solid #E78B90 !important;
+  .item.login {
+    color: black + 50 !important;
+  }
+  .title1, .title2 {
+    color: black + 50 !important;
+  }
+}
+
+
+.avatar {
+  border: 2px solid #E78B90;
+}

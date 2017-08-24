@@ -1,0 +1,161 @@
+.profile-cover {
+	width: 100%;
+	margin-top: 0;
+	border: none;
+	top: -7rem;
+}
+
+.profile-cover-div {
+	position: relative;
+	height: 35rem;
+	overflow: hidden;
+	&:hover {
+		.cover-update-text {
+			opacity: 1;
+		}
+	}
+}
+
+.follow {
+	.ui.button {
+		background: #E78B90;
+    color: white;
+    padding: 11px;
+		font-size: 1.2rem;
+	}
+	text-align: center;
+}
+
+.profile-info {
+	position: absolute;
+	transform: translateZ;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%);
+	z-index: 1;
+}
+
+.profile-image-text {
+	position: relative;
+	width: 100%;
+  margin: 0 auto;
+}
+
+.logged-in-user {
+	&:hover {
+		cursor: pointer;
+		.profile-image {
+			opacity: 0.6;
+		}
+		.update-icon-text {
+			opacity: 1;
+		}
+	}
+}
+
+.profile-image {
+	border-radius: 50px !important;
+  border: 3px solid #E78B90;
+	border-radius: 5px;
+	width: 100px;
+	background: rgba(0, 0, 0, 0.14);
+}
+
+.update-icon-text {
+	position: absolute;
+	transform: translate(0, -101%);
+	text-align: center;
+	z-index: 999;
+	opacity: 0;
+	width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  border: 1px solid;
+	transition-duration: 500ms;
+	i {
+		position: absolute;
+    transform: translate(-48%, 113%);
+	}
+}
+
+.cover-update-text {
+	color: white;
+	position: absolute;
+	top: 30%;
+	left: 7%;
+	z-index: 1;
+	text-align: center;
+	opacity: 0;
+	cursor: pointer;
+	background: rgba(0, 0, 0, 0.57);
+  padding: 6px;
+  border: 1px solid white;
+	transition-duration: 500ms;
+}
+
+.profile-nav-links {
+	margin-right: 30px;
+	cursor: pointer;
+	height: 2.2rem;
+	&.active{
+		border-bottom: 5px solid rgb(14, 175, 138);
+	}
+}
+
+.profile-nav {
+  position: relative;
+  color: white;
+  text-transform: uppercase;
+  left: 50%;
+  transform: translate(-50%, -71%);
+  position: relative;
+  padding-top: 1rem;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.overlay-image {
+	position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(36, 37, 39, 0.37);
+}
+
+.profile-name {
+	margin-top: 12px;
+	font-weight: 100;
+	text-align: center;
+	margin-bottom: 0;
+	text-transform: capitalize;
+}
+
+.profile-bio {
+	font-weight: 100;
+	text-align: center;
+	margin: 1rem auto;
+}
+
+.cover-image {
+	filter: brightness(50%);
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.social-links {
+	margin-top: 12px;
+	margin-bottom: 12px;
+	font-size: 1.7em !important;
+	text-align: center;
+	cursor: pointer;
+	i {
+		color: white;
+	}
+}
+
+.personal-links {
+	text-align: center;
+	button {
+		background-color: white;
+		padding: 5px 10px;
+	}
+}

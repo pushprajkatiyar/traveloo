@@ -1,0 +1,18 @@
+<div class="header">
+  <img class="trip-image" [src]="trip?.thumbnail_image_url | thumbnail:'c_limit,q_50,w_1200'">
+  <div class="trip-name">
+    <h1>{{trip?.name}}</h1>
+  </div>
+  <div class="trip-info">
+    <div>
+      {{ trip?.view_count | humanize }} Views
+    </div>
+    <hr>
+    <div class="like-trip">
+      <i class="thumbs up huge icon" (click)="onToggleLike()"
+        [ngClass]="tripLikeState()"
+      ></i>
+      {{trip?.trip_likes_count | humanize}} Likes
+    </div>
+  </div>
+</div>
